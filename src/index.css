@@ -1,0 +1,46 @@
+@import-normalize;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #444444;
+  color: #ffffff;
+  background-image: url('https://www.transparenttextures.com/patterns/inspiration-geometry.png');
+}
+
+ul {
+  list-style: none;
+}
+
+picture,
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+button,
+label,
+input {
+  cursor: pointer;
+  font-family: inherit;
+}
