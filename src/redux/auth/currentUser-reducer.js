@@ -5,8 +5,8 @@ import * as operations from 'redux/auth/auth-operations';
 export const currentUserReducer = createReducer(
   initialState.auth.isFetchingCurrentUser,
   {
-    [operations.getCurrentUser.fulfilled]: () => false,
-    [operations.getCurrentUser.pending]: () => true,
-    [operations.getCurrentUser.rejected]: () => false,
+    [operations.currentUser.fulfilled]: () => false,
+    [operations.currentUser.pending]: () => true,
+    [operations.currentUser.rejected]: () => false,
   },
 );

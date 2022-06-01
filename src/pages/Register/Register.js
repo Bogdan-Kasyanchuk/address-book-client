@@ -90,7 +90,7 @@ const Register = () => {
     watch('password') === undefined;
 
   const handlerCreateUser = credentials => {
-    dispatch(operations.register(credentials));
+    dispatch(operations.registerUser(credentials));
   };
 
   return (
@@ -102,8 +102,20 @@ const Register = () => {
             <Span>
               <Input
                 type="text"
-                {...register('name', { required: 'Required field!' })}
+                {...register('name', {
+                  required: 'The name is a required field!',
+                  minLength: {
+                    value: 3,
+                    message: 'The name must contain min 3 characters!',
+                  },
+                  pattern: {
+                    value:
+                      /[a-zA-Zа-яА-ЯёЁїЇіІєЄґҐ']+(([' -][a-zA-Zа-яА-ЯёЁїЇіІєЄґҐ' ])?[a-zA-Zа-яА-ЯёЁїЇіІєЄґҐ']*)*$/,
+                    message: 'Enter the desired name format!',
+                  },
+                })}
                 placeholder="Enter name"
+                title="Name may contain only letters, apostrophe, dash and spaces. For example: Adrian, Jacob Mercer, Charles de Batz, de Castelmore, d'Artagnan, Van-Dame"
               />
               {errors?.name && <P>{errors?.name?.message || 'Error!'}</P>}
             </Span>
@@ -113,8 +125,16 @@ const Register = () => {
             <Span>
               <Input
                 type="email"
-                {...register('email', { required: 'Required field!' })}
+                {...register('email', {
+                  required: 'The email is a required field!',
+                  pattern: {
+                    value:
+                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    message: 'Enter the desired email format!',
+                  },
+                })}
                 placeholder="Enter email"
+                title="Email can contain numbers and letters, dashes and under dashes. For example: pibij62253@mail.com, pSDi-j62_2@mail.com"
               />
               {errors?.email && <P>{errors?.email?.message || 'Error!'}</P>}
             </Span>
@@ -125,13 +145,19 @@ const Register = () => {
               <Input
                 type="password"
                 {...register('password', {
-                  required: 'Required field!',
+                  required: 'The password is a required field!',
                   minLength: {
-                    value: 6,
-                    message: 'Min 6 characters!',
+                    value: 8,
+                    message: 'The password must contain min 8 characters!',
+                  },
+                  pattern: {
+                    value:
+                      /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{8,}/,
+                    message: 'Enter the desired password format!',
                   },
                 })}
                 placeholder="Enter password"
+                title="The password must be digits and letters and capital letters and special characters. For example: bg2H3p@gR8"
               />
               {errors?.password && (
                 <P>{errors?.password?.message || 'Error'}</P>

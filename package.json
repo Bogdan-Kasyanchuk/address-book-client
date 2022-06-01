@@ -15,8 +15,7 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "redux": "^4.1.2",
-    "redux-persist": "^6.0.0",
-    "styled-components": "^5.3.3"
+    "redux-persist": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -49,7 +48,8 @@
     "lint-staged": "^12.1.7",
     "prettier": "^2.5.1",
     "prop-types": "^15.8.1",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "styled-components": "^5.3.3"
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint --fix",

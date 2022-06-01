@@ -4,7 +4,7 @@ const initialState = {
     filter: '',
   },
   auth: {
-    user: { name: null, email: null },
+    user: { name: null, email: null, avatarUrl: null },
     token: null,
     isLoggedIn: false,
     isFetchingCurrentUser: false,

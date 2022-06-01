@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Div = styled.div`
-  max-width: 1440px;
+  max-width: 1280px;
   padding-left: 20px;
   padding-right: 20px;
   margin-left: auto;

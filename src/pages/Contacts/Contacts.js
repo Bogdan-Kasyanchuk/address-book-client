@@ -1,7 +1,4 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import * as operations from 'redux/contacts/contacts-operations';
 import ContactForm from 'components/ContactForm/ContactForm';
 import Filter from 'components/Filter/Filter';
 import ContactList from 'components/ContactList/ContactList';
@@ -25,17 +22,10 @@ const H2 = styled.h2`
 `;
 
 const Contacts = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(operations.getContact());
-  }, [dispatch]);
-
   return (
     <Section>
       <Container>
         <Div>
-          <H2>ADD NEW CONTACT</H2>
           <ContactForm />
         </Div>
         <Div>

@@ -1,13 +1,12 @@
 import { combineReducers } from '@reduxjs/toolkit';
-
 import { userReducer } from 'redux/auth/user-reducer';
-import { tokenReducer } from 'redux/auth/token-reducer';
-import { loggedReducer } from 'redux/auth/logged-reducer';
+import { tokenUserReducer } from 'redux/auth/tokenUser-reducer';
+import { loggedUserReducer } from 'redux/auth/loggedUser-reducer';
 import { currentUserReducer } from 'redux/auth/currentUser-reducer';
 
-export const authReducer = combineReducers({
+export const authReducers = combineReducers({
   user: userReducer,
-  token: tokenReducer,
-  isLoggedIn: loggedReducer,
+  token: tokenUserReducer,
+  isLoggedIn: loggedUserReducer,
   isFetchingCurrentUser: currentUserReducer,
 });

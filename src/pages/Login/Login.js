@@ -88,7 +88,7 @@ const Login = () => {
     watch('password') === undefined;
 
   const handlerLogInUser = credentials => {
-    dispatch(operations.logIn(credentials));
+    dispatch(operations.logInUser(credentials));
   };
 
   return (
@@ -100,8 +100,16 @@ const Login = () => {
             <Span>
               <Input
                 type="email"
-                {...register('email', { required: 'Required field!' })}
+                {...register('email', {
+                  required: 'The email is a required field!',
+                  pattern: {
+                    value:
+                      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                    message: 'Enter the desired email format!',
+                  },
+                })}
                 placeholder="Enter email"
+                title="Email can contain numbers and letters, dashes and under dashes. For example: pibij62253@mail.com, pSDi-j62_2@mail.com"
               />
               {errors?.email && <P>{errors?.email?.message || 'Error!'}</P>}
             </Span>
@@ -112,13 +120,19 @@ const Login = () => {
               <Input
                 type="password"
                 {...register('password', {
-                  required: 'Required field!',
+                  required: 'The password is a required field!',
                   minLength: {
-                    value: 6,
-                    message: 'Min 6 characters!',
+                    value: 8,
+                    message: 'The password must contain min 8 characters!',
+                  },
+                  pattern: {
+                    value:
+                      /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{8,}/,
+                    message: 'Enter the desired password format!',
                   },
                 })}
                 placeholder="Enter password"
+                title="The password must be digits and letters and capital letters and special characters. For example: bg2H3p@gR8"
               />
               {errors?.password && (
                 <P>{errors?.password?.message || 'Error'}</P>

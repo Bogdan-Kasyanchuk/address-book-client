@@ -1,6 +1,6 @@
 import { useEffect, Suspense, lazy } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 import * as operations from 'redux/auth/auth-operations';
 import { getIsFetchingCurrentUser } from 'redux/auth/auth-selectors';
@@ -29,7 +29,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(operations.getCurrentUser());
+    dispatch(operations.currentUser());
   }, [dispatch]);
 
   return (

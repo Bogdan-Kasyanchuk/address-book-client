@@ -1,4 +1,4 @@
-import phonebook from 'img/phonebook.png';
+import phonebook from 'assets/img/phonebook.png';
 import styled from 'styled-components';
 import Container from 'components/Container/Container';
 
@@ -34,10 +34,10 @@ const Home = () => {
       <Container>
         <Div>
           <Div1>
-            <H1>WELCOME!</H1>
-            <H2>THIS IS YOUR PHONEBOOK.</H2>
+            <H1>Welcome!</H1>
+            <H2>This is your Addres book.</H2>
           </Div1>
-          <img src={phonebook} alt="Not found" width="600" />
+          <img src={phonebook} alt="Phonebook" width="600" />
         </Div>
       </Container>
     </section>
