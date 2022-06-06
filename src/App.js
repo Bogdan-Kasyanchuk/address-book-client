@@ -1,7 +1,7 @@
 import { useEffect, Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Toaster } from 'react-hot-toast';
+// import { Toaster } from 'react-hot-toast';
 import * as operations from 'redux/auth/auth-operations';
 import { getIsFetchingCurrentUser } from 'redux/auth/auth-selectors';
 import { getLoading } from 'redux/selectors';
@@ -10,17 +10,17 @@ import PublicRoute from 'components/PublicRoute/PublicRoute';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import Spinner from 'components/Spinner/Spinner';
 
-const Home = lazy(() =>
-  import('pages/Home/Home' /* webpackChunkName: "Home" */),
+const HomePage = lazy(() =>
+  import('pages/HomePage/HomePage' /* webpackChunkName: "Home" */),
 );
-const Contacts = lazy(() =>
-  import('pages/Contacts/Contacts' /* webpackChunkName: "Contacts" */),
+const ContactsPage = lazy(() =>
+  import('pages/ContactsPage/ContactsPage' /* webpackChunkName: "Contacts" */),
 );
-const Register = lazy(() =>
-  import('pages/Register/Register' /* webpackChunkName: "Register" */),
+const RegisterPage = lazy(() =>
+  import('pages/RegisterPage/RegisterPage' /* webpackChunkName: "Register" */),
 );
-const Login = lazy(() =>
-  import('pages/Login/Login' /* webpackChunkName: "Login" */),
+const LoginPage = lazy(() =>
+  import('pages/LoginPage/LoginPage' /* webpackChunkName: "Login" */),
 );
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <>
-      <Toaster position="top-right" />
+      {/* <Toaster position="top-right" /> */}
       {!isFetchingCurrentUser && (
         <>
           <AppBar />
@@ -45,7 +45,7 @@ function App() {
                 path="/"
                 element={
                   <PublicRoute>
-                    <Home />
+                    <HomePage />
                   </PublicRoute>
                 }
               />
@@ -53,7 +53,7 @@ function App() {
                 path="contacts"
                 element={
                   <PrivateRoute>
-                    <Contacts />
+                    <ContactsPage />
                   </PrivateRoute>
                 }
               />
@@ -61,7 +61,7 @@ function App() {
                 path="register"
                 element={
                   <PublicRoute restricted>
-                    <Register />
+                    <RegisterPage />
                   </PublicRoute>
                 }
               />
@@ -69,7 +69,7 @@ function App() {
                 path="login"
                 element={
                   <PublicRoute restricted>
-                    <Login />
+                    <LoginPage />
                   </PublicRoute>
                 }
               />

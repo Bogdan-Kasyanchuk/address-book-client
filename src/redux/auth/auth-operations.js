@@ -1,19 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-// import toast from 'react-hot-toast';
-import token from 'service/axiosBase';
+import toast from 'react-hot-toast';
+import tokenService from 'service/tokenService';
 
 export const registerUser = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/register', credentials);
-      token.set(data.payload.token);
+      tokenService.set(data.payload.token);
+      toast.success(data.payload.message);
       return data.payload;
     } catch (error) {
-      // toast.error(
-      //   'The email you entered is already registered, please try another email!',
-      // );
+      toast.error(rejectWithValue(error).payload.response.data.payload.message);
       return rejectWithValue(error);
     }
   },
@@ -24,10 +23,11 @@ export const logInUser = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', credentials);
-      token.set(data.payload.token);
+      tokenService.set(data.payload.token);
+      toast.success(data.payload.message);
       return data.payload;
     } catch (error) {
-      // toast.error('Email or password entered incorrectly!');
+      toast.error(rejectWithValue(error).payload.response.data.payload.message);
       return rejectWithValue(error);
     }
   },
@@ -38,8 +38,10 @@ export const logOutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await axios.get('/auth/logout');
-      token.unset();
+      tokenService.unset();
+      toast.success('User logout successful');
     } catch (error) {
+      toast.error(rejectWithValue(error).payload.response.data.payload.message);
       return rejectWithValue(error);
     }
   },
@@ -52,11 +54,15 @@ export const currentUser = createAsyncThunk(
     if (!currentToken) {
       return thunkAPI.rejectWithValue();
     }
-    token.set(currentToken);
+    tokenService.set(currentToken);
     try {
       const { data } = await axios.get('users/current');
+      toast.success(data.payload.message);
       return data.payload;
     } catch (error) {
+      toast.error(
+        thunkAPI.rejectWithValue(error).payload.response.data.payload.message,
+      );
       return thunkAPI.rejectWithValue(error);
     }
   },
@@ -64,18 +70,18 @@ export const currentUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   'users/update',
-  async ({ file, name }, { rejectWithValue }) => {
+  async ({ fileAvatar, name }, { rejectWithValue }) => {
     try {
       const formData = new FormData();
-      if (file) {
-        formData.append('avatar', file);
+      if (fileAvatar) {
+        formData.append('avatar', fileAvatar);
       }
       formData.append('name', name);
       const { data } = await axios.put(`/users`, formData);
-      // toast.success('Avatar update successfully!');
+      toast.success(data.payload.message);
       return data.payload;
     } catch (error) {
-      // toast.error(`${error}`);
+      toast.error(rejectWithValue(error).payload.response.data.payload.message);
       return rejectWithValue(error);
     }
   },
@@ -86,10 +92,10 @@ export const deleteAvatarUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await axios.delete(`/users/avatars`);
-      // toast.success('Avatar deleted successfully!');
+      toast.success(data.payload.message);
       return data.payload;
     } catch (error) {
-      // toast.error(`${error}`);
+      toast.error(rejectWithValue(error).payload.response.data.payload.message);
       return rejectWithValue(error);
     }
   },

@@ -26,10 +26,10 @@ const AuthNav = () => {
   return (
     <Ul>
       <Li>
-        <CustomNavLink to="/register">SIGN UP</CustomNavLink>
+        <CustomNavLink to="/register">Sign up</CustomNavLink>
       </Li>
       <Li>
-        <CustomNavLink to="/login">LOG IN</CustomNavLink>
+        <CustomNavLink to="/login">Log in</CustomNavLink>
       </Li>
     </Ul>
   );

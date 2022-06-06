@@ -1,9 +1,8 @@
-const nameRegex =
+export const nameRegex =
   /[a-zA-Zа-яА-ЯёЁїЇіІєЄґҐ']+(([' -][a-zA-Zа-яА-ЯёЁїЇіІєЄґҐ' ])?[a-zA-Zа-яА-ЯёЁїЇіІєЄґҐ']*)*$/;
-const emailRegex =
+export const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const passwordRegex =
+export const passwordRegex =
   /(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z])[0-9!@#$%^&*a-zA-Z]{8,}/;
-const phoneRegex = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,20}(\s*)?$/;
-
-module.exports = { nameRegex, emailRegex, passwordRegex, phoneRegex };
+export const phoneRegex =
+  /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,20}(\s*)?$/;

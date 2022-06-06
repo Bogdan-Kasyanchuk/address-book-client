@@ -1,6 +1,5 @@
-import phonebook from 'assets/img/phonebook.png';
 import styled from 'styled-components';
-import Container from 'components/Container/Container';
+import phonebook from 'assets/img/phonebook.png';
 
 const Div = styled.div`
   display: flex;
@@ -30,17 +29,13 @@ const H2 = styled.h2`
 
 const Home = () => {
   return (
-    <section>
-      <Container>
-        <Div>
-          <Div1>
-            <H1>Welcome!</H1>
-            <H2>This is your Addres book.</H2>
-          </Div1>
-          <img src={phonebook} alt="Phonebook" width="600" />
-        </Div>
-      </Container>
-    </section>
+    <Div>
+      <Div1>
+        <H1>Welcome!</H1>
+        <H2>This is your Addres book.</H2>
+      </Div1>
+      <img src={phonebook} alt="Phonebook" width="600" />
+    </Div>
   );
 };
 

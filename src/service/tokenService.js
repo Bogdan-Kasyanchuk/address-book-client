@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001/api';
 
-const token = {
+const tokenService = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -11,4 +11,4 @@ const token = {
   },
 };
 
-export default token;
+export default tokenService;

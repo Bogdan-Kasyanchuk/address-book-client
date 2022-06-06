@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 
-const PublicRoute = ({ children, restricted = false }) => {
+const PublicRoute = ({ children, restricted }) => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const shouldRedirect = isLoggedIn && restricted;
 

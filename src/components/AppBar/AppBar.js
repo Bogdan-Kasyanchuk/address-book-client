@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 import styled from 'styled-components';
+import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 import Logo from 'components/Logo/Logo';
 import Navigation from 'components/Navigation/Navigation';
 import UserMenu from 'components/UserMenu/UserMenu';
@@ -20,7 +20,7 @@ const AppBar = () => {
   return (
     <Header>
       <Navigation />
-      <Logo children="PHONEBOOK" />
+      <Logo children="Addres book" />
       {isLoggedIn ? <UserMenu /> : <AuthNav />}
     </Header>
   );

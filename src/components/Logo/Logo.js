@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import Icon from 'components/Icon/Icon';
 import styled from 'styled-components';
+import Icon from 'components/Icon/Icon';
 
 const Div = styled.div`
   display: flex;
@@ -21,7 +21,7 @@ const Span = styled.span`
 const Logo = ({ children }) => {
   return (
     <Div>
-      <Icon iconName="phonebook" width="20" />
+      <Icon iconName="phonebook" />
       <Span>{children}</Span>
     </Div>
   );

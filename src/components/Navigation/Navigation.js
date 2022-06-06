@@ -1,5 +1,5 @@
-import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { getIsLoggedIn } from 'redux/auth/auth-selectors';
 
@@ -29,11 +29,11 @@ const Navigation = () => {
   return (
     <Ul>
       <Li>
-        <CustomNavLink to="/">HOME</CustomNavLink>
+        <CustomNavLink to="/">Home</CustomNavLink>
       </Li>
       {isLoggedIn && (
         <Li>
-          <CustomNavLink to="/contacts">CONTACTS</CustomNavLink>
+          <CustomNavLink to="/contacts">Contacts</CustomNavLink>
         </Li>
       )}
     </Ul>

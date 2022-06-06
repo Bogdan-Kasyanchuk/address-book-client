@@ -16,8 +16,8 @@ const Icon = ({ className, iconName, width, height, fill, stroke }) => {
 };
 
 Icon.defaultProps = {
-  width: '24px',
-  height: '24px',
+  width: '22px',
+  height: '22px',
   fill: '#000000',
   stroke: 'inherit',
   iconName: '',
