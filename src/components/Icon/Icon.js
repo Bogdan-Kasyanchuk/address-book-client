@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import sprite from 'assets/img/sprite.svg';
+import sprite from 'assets/sprite.svg';
 
 const Icon = ({ className, iconName, width, height, fill, stroke }) => {
   return (
@@ -16,8 +16,8 @@ const Icon = ({ className, iconName, width, height, fill, stroke }) => {
 };
 
 Icon.defaultProps = {
-  width: '22px',
-  height: '22px',
+  width: '20px',
+  height: '20px',
   fill: '#000000',
   stroke: 'inherit',
   iconName: '',

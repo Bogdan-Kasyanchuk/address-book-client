@@ -1,28 +1,13 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Icon from 'components/Icon/Icon';
-
-const Div = styled.div`
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
-  .icon-phonebook {
-    margin-right: 10px;
-    fill: #ff6600;
-  }
-  line-height: 1;
-`;
-
-const Span = styled.span`
-  font-size: 26px;
-`;
+import { size } from 'styles/variables';
 
 const Logo = ({ children }) => {
   return (
     <Div>
-      <Icon iconName="phonebook" />
-      <Span>{children}</Span>
+      <Icon iconName="logo" width="34px" height="34px" />
+      <H1>{children}</H1>
     </Div>
   );
 };
@@ -32,3 +17,35 @@ Logo.propTypes = {
 };
 
 export default Logo;
+
+const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: calc(100% / 3);
+  color: #ff6600;
+
+  .icon {
+    stroke: currentColor;
+  }
+`;
+
+const H1 = styled.h1`
+  ${size.mobileMax} {
+    display: none;
+  }
+
+  margin-left: 10px;
+  font-size: 16px;
+  line-height: 1.06;
+  text-transform: uppercase;
+
+  ${size.laptopMax} {
+    width: 60px;
+  }
+
+  ${size.desktopMin} {
+    font-size: 34px;
+    line-height: 1;
+  }
+`;

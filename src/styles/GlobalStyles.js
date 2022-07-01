@@ -11,10 +11,15 @@ ${normalize}
 }
 
 * {
-  margin: 0;
   padding: 0;
   border: 0;
   outline: none;
+}
+
+*, h1,
+h2,
+h3 {
+  margin: 0;
 }
 
 html,
@@ -59,7 +64,6 @@ button,
 input,
 textarea {
   font-family: inherit;
-  color: inherit;
 }
 
 button,

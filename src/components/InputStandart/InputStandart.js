@@ -1,22 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Input = styled.input`
-  display: inline-block;
-  margin-right: 33px;
-  margin-top: 5px;
-  width: 78%;
-  color: #202020;
-  padding: 5px 10px;
-  font-size: 18px;
-  border-radius: 5px;
-  border: 2px solid #ffffff;
-  outline: none;
-  :focus {
-    border-color: #ff6600;
-  }
-`;
-
 const InputStandart = ({
   autoComplete,
   type,
@@ -44,3 +28,18 @@ InputStandart.propTypes = {
 };
 
 export default InputStandart;
+
+const Input = styled.input`
+  width: 100%;
+  margin-top: 8px;
+  color: #000000;
+  padding: 4px 8px;
+  font-size: 20px;
+  border: 2px solid #ffffff;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  line-height: 1.1;
+  :focus {
+    border-color: #ff6600;
+  }
+`;

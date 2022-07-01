@@ -1,14 +1,6 @@
 import Loader from 'react-loader-spinner';
 import styled from 'styled-components';
 
-const Div = styled.div`
-  position: fixed;
-  top: 90px;
-  left: 50%;
-  z-index: 1000;
-  transform: translate(-50%, 0px);
-`;
-
 const Spinner = () => {
   return (
     <Div>
@@ -18,3 +10,11 @@ const Spinner = () => {
 };
 
 export default Spinner;
+
+const Div = styled.div`
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  z-index: 1000;
+  transform: translate(-50%, 0px);
+`;

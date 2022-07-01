@@ -1,13 +1,14 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
 import { getUserName } from 'redux/auth/auth-selectors';
 import * as operations from 'redux/auth/auth-operations';
 import Modal from 'components/Modal/Modal';
-import Image from 'components/Image/Image';
-import InputFile from 'components/InputFile/InputFile';
+import SubTitle from 'components/SubTitle/SubTitle';
+import EditAvatar from 'components/EditAvatar/EditAvatar';
 import Form from 'components/Form/Form';
+import ButtonGroup from 'components/ButtonGroup/ButtonGroup';
 import ButtonText from 'components/ButtonText/ButtonText';
 import InputForm from 'components/InputForm/InputForm';
 import loadAvatarService from 'service/loadAvatarService';
@@ -17,9 +18,9 @@ import { TITLE_FORM } from 'helpers/constants';
 const ModalEditUser = ({ userAvatar, closeModalEdit }) => {
   const dispatch = useDispatch();
   const userName = useSelector(getUserName);
-  const refInput = useRef();
   const [fileAvatar, setFileAvatar] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
+
   const {
     register,
     handleSubmit,
@@ -32,15 +33,12 @@ const ModalEditUser = ({ userAvatar, closeModalEdit }) => {
     (watch('name') !== userName && watch('name') !== undefined) ||
     fileAvatar !== null;
 
-  const clickInputAvatar = () => {
-    refInput.current.click();
-  };
-
   const loadAvatar = event => {
     loadAvatarService(event, setFileAvatar, setImagePreview);
   };
 
-  const deleteAvatar = () => {
+  const deleteAvatar = event => {
+    event.stopPropagation();
     setImagePreview(null);
     setFileAvatar(null);
     dispatch(operations.deleteAvatarUser());
@@ -60,19 +58,13 @@ const ModalEditUser = ({ userAvatar, closeModalEdit }) => {
 
   return (
     <Modal modalHundler={closeModal}>
-      <Image src={imagePreview ? imagePreview : userAvatar} alt={'Avatar'} />
-      <ButtonText type="button" buttonHundler={deleteAvatar}>
-        Delete avatar
-      </ButtonText>
-      <ButtonText type="button" buttonHundler={clickInputAvatar}>
-        Load avatar
-      </ButtonText>
-      <InputFile
-        accept="image/*"
-        type="file"
-        inputHundler={loadAvatar}
-        ref={refInput}
-      />
+      <SubTitle>Editing user</SubTitle>
+      <EditAvatar
+        imagePreview={imagePreview}
+        userAvatar={userAvatar}
+        deleteAvatar={deleteAvatar}
+        loadAvatar={loadAvatar}
+      ></EditAvatar>
       <Form autoComplete="off" formHundler={handleSubmit(editUser)}>
         <InputForm
           name="Name"
@@ -84,12 +76,14 @@ const ModalEditUser = ({ userAvatar, closeModalEdit }) => {
           title={TITLE_FORM.NAME}
           errors={errors}
         />
-        <ButtonText disabled={!buttonDisabled} type="submit">
-          Ok
-        </ButtonText>
-        <ButtonText type="button" buttonHundler={closeModal}>
-          Cancel
-        </ButtonText>
+        <ButtonGroup>
+          <ButtonText disabled={!buttonDisabled} type="submit">
+            Ok
+          </ButtonText>
+          <ButtonText type="button" buttonHundler={closeModal}>
+            Cancel
+          </ButtonText>
+        </ButtonGroup>
       </Form>
     </Modal>
   );

@@ -1,24 +1,19 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import * as operations from 'redux/contacts/contacts-operations';
 import { getContacts } from 'redux/contacts/contacts-selectors';
 import Modal from 'components/Modal/Modal';
+import SubTitle from 'components/SubTitle/SubTitle';
 import Form from 'components/Form/Form';
 import InputForm from 'components/InputForm/InputForm';
 import TextAreaForm from 'components/TextAreaForm/TextAreaForm';
+import InputCheckboxForm from 'components/InputCheckboxForm/InputCheckboxForm';
+import ButtonGroup from 'components/ButtonGroup/ButtonGroup';
 import ButtonText from 'components/ButtonText/ButtonText';
 import { existContactCreate } from 'service/existContactService';
 import validation from 'service/validationService';
 import { TITLE_FORM } from 'helpers/constants';
-
-const H2 = styled.h2`
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #ff6600;
-  text-align: center;
-`;
 
 const ModalCreateContact = ({ closeModalCreate }) => {
   const dispatch = useDispatch();
@@ -55,7 +50,7 @@ const ModalCreateContact = ({ closeModalCreate }) => {
 
   return (
     <Modal modalHundler={closeModal}>
-      <H2>Add new contsct</H2>
+      <SubTitle>Creating contact</SubTitle>
       <Form autoComplete="off" formHundler={handleSubmit(createContact)}>
         <InputForm
           name="Name"
@@ -97,13 +92,15 @@ const ModalCreateContact = ({ closeModalCreate }) => {
           placeholder="Enter other"
           title={TITLE_FORM.OTHER}
         />
-        <InputForm name="Favorite" type="checkbox" register={register} />
-        <ButtonText disabled={buttonDisabled} type="submit">
-          OK
-        </ButtonText>
-        <ButtonText type="button" buttonHundler={closeModal}>
-          Cancel
-        </ButtonText>
+        <InputCheckboxForm name="Favorite" register={register} />
+        <ButtonGroup>
+          <ButtonText disabled={buttonDisabled} type="submit">
+            Ok
+          </ButtonText>
+          <ButtonText type="button" buttonHundler={closeModal}>
+            Cancel
+          </ButtonText>
+        </ButtonGroup>
       </Form>
     </Modal>
   );

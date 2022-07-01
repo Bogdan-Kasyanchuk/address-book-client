@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Icon from 'components/Icon/Icon';
 import ButtonText from 'components/ButtonText/ButtonText';
 
 const modalRoot = document.querySelector('#root-modal');
@@ -27,10 +28,13 @@ const Modal = ({ children, modalHundler }) => {
   return createPortal(
     <Overlay onClick={onClickBackdrop}>
       <Content>
-        <ButtonText type="button" buttonHundler={modalHundler}>
-          Close
-        </ButtonText>
-        {children}
+        <DivDiv>
+          <Icon iconName="logo" width="34px" height="34px" />
+          <ButtonText type="button" buttonHundler={modalHundler}>
+            Close
+          </ButtonText>
+        </DivDiv>
+        <DivDivDiv>{children}</DivDivDiv>
       </Content>
     </Overlay>,
     modalRoot,
@@ -42,25 +46,49 @@ Modal.propTypes = {
   children: PropTypes.node,
 };
 
+export default Modal;
+
 const Overlay = styled.div`
   position: fixed;
   left: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 3000;
 `;
+
 const Content = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 50%;
-  height: 90%;
+  min-width: 330px;
+  max-width: 440px;
   transform: translate(-50%, -50%);
-  padding: 20px;
+  background-color: #444444;
   overflow-y: auto;
-  background-color: #ffffff;
-  opacity: 1;
+  max-height: 80vh;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 `;
 
-export default Modal;
+const DivDiv = styled.div`
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #ff6600;
+
+  .icon {
+    stroke: #ff6600;
+  }
+
+  button {
+    margin-left: 0;
+    margin-right: 0;
+  }
+`;
+
+const DivDivDiv = styled.div`
+  padding: 20px;
+`;

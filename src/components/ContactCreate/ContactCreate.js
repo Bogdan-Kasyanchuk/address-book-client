@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ModalCreateContact from 'components/ModalCreateContact/ModalCreateContact';
-import ButtonText from 'components/ButtonText/ButtonText';
+import ButtonIconText from 'components/ButtonIconText/ButtonIconText';
 
 const ContactCreate = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -15,9 +15,9 @@ const ContactCreate = () => {
 
   return (
     <>
-      <ButtonText type="button" buttonHundler={openModal}>
-        Add transaction
-      </ButtonText>
+      <ButtonIconText type="button" buttonHundler={openModal} iconName="add">
+        Add contact
+      </ButtonIconText>
       {isOpenModal && (
         <ModalCreateContact closeModalCreate={closeModalCreate} />
       )}

@@ -5,14 +5,8 @@ import * as operations from 'redux/contacts/contacts-operations';
 import { getFilter } from 'redux/contacts/contacts-selectors';
 import * as actions from 'redux/contacts/contacts-action';
 import Modal from 'components/Modal/Modal';
+import ButtonGroup from 'components/ButtonGroup/ButtonGroup';
 import ButtonText from 'components/ButtonText/ButtonText';
-
-const H2 = styled.h2`
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #ff6600;
-  text-align: center;
-`;
 
 const ModalDeleteContact = ({ id, name, closeModalDelete }) => {
   const dispatch = useDispatch();
@@ -25,13 +19,15 @@ const ModalDeleteContact = ({ id, name, closeModalDelete }) => {
 
   return (
     <Modal modalHundler={closeModalDelete}>
-      <H2>Are you sure you want to delete contact "{name}"?</H2>
-      <ButtonText type="button" buttonHundler={deleteContact}>
-        Ok
-      </ButtonText>
-      <ButtonText type="button" buttonHundler={closeModalDelete}>
-        Cancel
-      </ButtonText>
+      <Text>Are you sure you want to delete contact "{name}"?</Text>
+      <ButtonGroup>
+        <ButtonText type="button" buttonHundler={deleteContact}>
+          Ok
+        </ButtonText>
+        <ButtonText type="button" buttonHundler={closeModalDelete}>
+          Cancel
+        </ButtonText>
+      </ButtonGroup>
     </Modal>
   );
 };
@@ -43,3 +39,10 @@ ModalDeleteContact.propTypes = {
 };
 
 export default ModalDeleteContact;
+
+const Text = styled.p`
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #ff6600;
+  line-height: 1.3;
+`;

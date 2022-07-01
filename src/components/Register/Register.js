@@ -58,7 +58,7 @@ const Register = () => {
         errors={errors}
       />
       <ButtonText disabled={buttonDisabled} type="submit">
-        Sign Up
+        Register
       </ButtonText>
     </Form>
   );

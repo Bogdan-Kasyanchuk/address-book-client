@@ -1,37 +1,40 @@
+import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import ContactCreate from 'components/ContactCreate/ContactCreate';
+import ContactFavorite from 'components/ContactFavorite/ContactFavorite';
 import Filter from 'components/Filter/Filter';
+import SubTitle from 'components/SubTitle/SubTitle';
 import ContactsList from 'components/ContactsList/ContactsList';
 
-const Div = styled.div`
-  :not(:last-child) {
-    margin-bottom: 40px;
-  }
-`;
-
-const H2 = styled.h2`
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #ff6600;
-  text-align: center;
-`;
-
 const Contacts = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   return (
     <>
       <Div>
         <ContactCreate />
+        <ContactFavorite
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
+        />
       </Div>
-      <Div>
-        <H2>Filter contacts</H2>
+      <Div maxWidth="450px" alignItems="flex-end">
         <Filter />
       </Div>
-      <Div>
-        <H2>Contacts list</H2>
-        <ContactsList />
-      </Div>
+      <SubTitle>Contacts list</SubTitle>
+      <ContactsList searchParams={searchParams.get('favorite')} />
     </>
   );
 };
 
 export default Contacts;
+
+const Div = styled.div`
+  max-width: ${element => element.maxWidth || '360px'};
+  display: flex;
+  align-items: ${element => element.alignItems || 'center'};
+  justify-content: space-around;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+`;

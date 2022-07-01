@@ -4,29 +4,10 @@ import styled from 'styled-components';
 import { getUserName, getUserAvatarUrl } from 'redux/auth/auth-selectors';
 import ModalEditUser from 'components/ModalEditUser/ModalEditUser';
 import ModalLogOut from 'components/ModalLogOut/ModalLogOut';
-import Image from 'components/Image/Image';
-import ButtonText from 'components/ButtonText/ButtonText';
+import Avatar from 'components/Avatar/Avatar';
+import ButtonIconText from 'components/ButtonIconText/ButtonIconText';
 import notAvatar from 'assets/img/notAvatar.png';
-
-const DivWrapper = styled.div`
-  position: relative;
-  width: 240px;
-  height: 32px;
-`;
-
-const Div = styled.div`
-  width: 350px;
-  position: absolute;
-  right: 50px;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const P = styled.p`
-  font-size: 20px;
-`;
+import { size } from 'styles/variables';
 
 const UserMenu = () => {
   const userName = useSelector(getUserName);
@@ -79,27 +60,75 @@ const UserMenu = () => {
   };
 
   return (
-    <DivWrapper>
-      <Div>
-        <div onClick={openModalEdit} style={{ display: 'flex' }}>
-          <Image src={userAvatar} alt={'Avatar'} />
-          <P>{userName}</P>
-        </div>
-        <ButtonText type="button" buttonHundler={openModalLogOut}>
-          Log out
-        </ButtonText>
-        {isOpenModal.edit && (
-          <ModalEditUser
-            userAvatar={userAvatar}
-            closeModalEdit={closeModalEdit}
-          />
-        )}
-        {isOpenModal.logOut && (
-          <ModalLogOut closeModalLogOut={closeModalLogOut} />
-        )}
+    <DivDiv>
+      <Div onClick={openModalEdit} style={{ display: 'flex' }}>
+        <DivImage>
+          <Avatar src={userAvatar} alt="Avatar" />
+        </DivImage>
+        <P>{userName}</P>
       </Div>
-    </DivWrapper>
+      <ButtonIconText
+        type="button"
+        buttonHundler={openModalLogOut}
+        iconName="logout"
+      >
+        Logout
+      </ButtonIconText>
+      {isOpenModal.edit && (
+        <ModalEditUser
+          userAvatar={userAvatar}
+          closeModalEdit={closeModalEdit}
+        />
+      )}
+      {isOpenModal.logOut && (
+        <ModalLogOut closeModalLogOut={closeModalLogOut} />
+      )}
+    </DivDiv>
   );
 };
 
 export default UserMenu;
+
+const DivDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const Div = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 15px;
+  max-height: 40px;
+  cursor: pointer;
+
+  ${size.tabletMin} {
+    margin-right: 20px;
+  }
+`;
+
+const DivImage = styled.div`
+  width: 34px;
+
+  ${size.laptopMin} {
+    width: 40px;
+  }
+`;
+
+const P = styled.p`
+  ${size['449Max']} {
+    display: none;
+  }
+
+  flex-basis: 25%;
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-left: 10px;
+
+  ${size.laptopMin} {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+`;

@@ -1,27 +1,8 @@
-import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { getIsLoggedIn } from 'redux/auth/auth-selectors';
-
-const Ul = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 190px;
-`;
-
-const Li = styled.li`
-  font-size: 20px;
-`;
-
-const CustomNavLink = styled(NavLink)`
-  color: #ffffff;
-  padding: 4px 0;
-  &:hover,
-  &.active {
-    color: #ff6600;
-  }
-`;
+import Link from 'components/Link/Link';
+import { size } from 'styles/variables';
 
 const Navigation = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
@@ -29,11 +10,15 @@ const Navigation = () => {
   return (
     <Ul>
       <Li>
-        <CustomNavLink to="/">Home</CustomNavLink>
+        <Link to="/" iconName="home">
+          Home
+        </Link>
       </Li>
       {isLoggedIn && (
         <Li>
-          <CustomNavLink to="/contacts">Contacts</CustomNavLink>
+          <Link to="/contacts" iconName="contacts">
+            Contacts
+          </Link>
         </Li>
       )}
     </Ul>
@@ -41,3 +26,24 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
+const Ul = styled.ul`
+  display: flex;
+  align-items: center;
+  flex-basis: calc(100% / 3);
+
+  ${size.laptopMin} {
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+`;
+
+const Li = styled.li`
+  :first-child {
+    margin-right: 15px;
+
+    ${size.tabletMin} {
+      margin-right: 20px;
+    }
+  }
+`;

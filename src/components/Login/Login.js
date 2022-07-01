@@ -47,7 +47,7 @@ const Login = () => {
         errors={errors}
       />
       <ButtonText disabled={buttonDisabled} type="submit">
-        Log In
+        LogIn
       </ButtonText>
     </Form>
   );

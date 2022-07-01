@@ -1,33 +1,25 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import * as operations from 'redux/contacts/contacts-operations';
 import { getContacts } from 'redux/contacts/contacts-selectors';
 import Modal from 'components/Modal/Modal';
-import Image from 'components/Image/Image';
-import InputFile from 'components/InputFile/InputFile';
+import SubTitle from 'components/SubTitle/SubTitle';
+import EditAvatar from 'components/EditAvatar/EditAvatar';
 import Form from 'components/Form/Form';
 import InputForm from 'components/InputForm/InputForm';
 import TextAreaForm from 'components/TextAreaForm/TextAreaForm';
+import ButtonGroup from 'components/ButtonGroup/ButtonGroup';
 import ButtonText from 'components/ButtonText/ButtonText';
 import { existContactUpdate } from 'service/existContactService';
 import loadAvatarService from 'service/loadAvatarService';
 import validation from 'service/validationService';
 import { TITLE_FORM } from 'helpers/constants';
 
-const H2 = styled.h2`
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #ff6600;
-  text-align: center;
-`;
-
 const ModalEditContact = ({ element, userAvatar, closeModalEdit }) => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContacts);
-  const refInput = useRef();
   const [fileAvatar, setFileAvatar] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
 
@@ -47,15 +39,12 @@ const ModalEditContact = ({ element, userAvatar, closeModalEdit }) => {
     (watch('other') !== element.other && watch('other') !== undefined) ||
     fileAvatar !== null;
 
-  const clickInputAvatar = () => {
-    refInput.current.click();
-  };
-
   const loadAvatar = event => {
     loadAvatarService(event, setFileAvatar, setImagePreview);
   };
 
-  const deleteAvatar = () => {
+  const deleteAvatar = event => {
+    event.stopPropagation();
     setImagePreview(null);
     setFileAvatar(null);
     dispatch(operations.deleteAvatarContact(element._id));
@@ -93,20 +82,13 @@ const ModalEditContact = ({ element, userAvatar, closeModalEdit }) => {
 
   return (
     <Modal modalHundler={closeModal}>
-      <H2>Edit contact</H2>
-      <Image src={imagePreview ? imagePreview : userAvatar} alt={'Avatar'} />
-      <ButtonText type="button" buttonHundler={deleteAvatar}>
-        Delete avatar
-      </ButtonText>
-      <ButtonText type="button" buttonHundler={clickInputAvatar}>
-        Load avatar
-      </ButtonText>
-      <InputFile
-        accept="image/*"
-        type="file"
-        inputHundler={loadAvatar}
-        ref={refInput}
-      />
+      <SubTitle>Editing contact</SubTitle>
+      <EditAvatar
+        imagePreview={imagePreview}
+        userAvatar={userAvatar}
+        deleteAvatar={deleteAvatar}
+        loadAvatar={loadAvatar}
+      ></EditAvatar>
       <Form autoComplete="off" formHundler={handleSubmit(editContact)}>
         <InputForm
           name="Name"
@@ -153,12 +135,14 @@ const ModalEditContact = ({ element, userAvatar, closeModalEdit }) => {
           placeholder="Enter other"
           title={TITLE_FORM.OTHER}
         />
-        <ButtonText disabled={!buttonDisabled} type="submit">
-          Ok
-        </ButtonText>
-        <ButtonText type="button" buttonHundler={closeModal}>
-          Cancel
-        </ButtonText>
+        <ButtonGroup>
+          <ButtonText disabled={!buttonDisabled} type="submit">
+            Ok
+          </ButtonText>
+          <ButtonText type="button" buttonHundler={closeModal}>
+            Cancel
+          </ButtonText>
+        </ButtonGroup>
       </Form>
     </Modal>
   );

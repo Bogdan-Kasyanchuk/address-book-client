@@ -1,38 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-const Label = styled.label`
-  font-size: 18px;
-  color: #000000;
-`;
-
-const Span = styled.span`
-  position: relative;
-  display: block;
-  margin-top: 5px;
-  margin-bottom: 26px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  display: block;
-  color: #000000;
-  padding: 5px 10px;
-  font-size: 18px;
-  border-radius: 5px;
-  border: 2px solid #000000;
-  outline: none;
-  :focus {
-    border-color: #000000;
-  }
-`;
-
-const P1 = styled.p`
-  top: 40px;
-  position: absolute;
-  font-size: 12px;
-  color: #000000;
-`;
+import LabelInput from 'components/LabelInput/LabelInput';
+import SpanInput from 'components/SpanInput/SpanInput';
 
 const InputForm = ({
   name,
@@ -45,9 +14,9 @@ const InputForm = ({
   errors,
 }) => {
   return (
-    <Label>
+    <LabelInput>
       {name}
-      <Span>
+      <SpanInput>
         <Input
           type={type}
           defaultValue={defaultValue}
@@ -55,9 +24,9 @@ const InputForm = ({
           placeholder={placeholder}
           title={title}
         />
-        {errors && <P1>{errors?.[name.toLowerCase()]?.message}</P1>}
-      </Span>
-    </Label>
+        {errors && <P>{errors?.[name.toLowerCase()]?.message}</P>}
+      </SpanInput>
+    </LabelInput>
   );
 };
 
@@ -73,3 +42,24 @@ InputForm.propTypes = {
 };
 
 export default InputForm;
+
+const Input = styled.input`
+  width: 100%;
+  color: #000000;
+  padding: 4px 8px;
+  font-size: 20px;
+  border: 2px solid #ffffff;
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  line-height: 1.1;
+  :focus {
+    border-color: #ff6600;
+  }
+`;
+
+const P = styled.p`
+  top: 45px;
+  position: absolute;
+  font-size: 12px;
+  color: #d40000;
+`;

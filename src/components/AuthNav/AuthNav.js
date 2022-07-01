@@ -1,38 +1,34 @@
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
-
-const Ul = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 170px;
-  margin-left: 20px;
-`;
-
-const Li = styled.li`
-  font-size: 20px;
-`;
-
-const CustomNavLink = styled(NavLink)`
-  color: #ffffff;
-  padding: 4px 0;
-  :hover,
-  &.active {
-    color: #ff6600;
-  }
-`;
+import Link from 'components/Link/Link';
+// import { size } from 'styles/variables';
 
 const AuthNav = () => {
   return (
     <Ul>
       <Li>
-        <CustomNavLink to="/register">Sign up</CustomNavLink>
+        <Link to="/register" iconName="register">
+          Register
+        </Link>
       </Li>
       <Li>
-        <CustomNavLink to="/login">Log in</CustomNavLink>
+        <Link to="/login" iconName="login">
+          Login
+        </Link>
       </Li>
     </Ul>
   );
 };
 
 export default AuthNav;
+
+const Ul = styled.ul`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const Li = styled.li`
+  :first-child {
+    margin-right: 20px;
+  }
+`;

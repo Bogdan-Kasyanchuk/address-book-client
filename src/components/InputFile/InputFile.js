@@ -7,17 +7,15 @@ const Input = styled.input`
 `;
 
 const InputFile = forwardRef((props, ref) => {
-  const { accept, type, inputHundler } = props;
+  const { inputHundler } = props;
 
   return (
-    <Input accept={accept} type={type} onChange={inputHundler} ref={ref} />
+    <Input accept="image/*" type="file" onChange={inputHundler} ref={ref} />
   );
 });
 
 Input.propTypes = {
-  accept: PropTypes.string,
-  type: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
+  inputHundler: PropTypes.func,
 };
 
 export default InputFile;

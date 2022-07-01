@@ -4,11 +4,8 @@ import styled from 'styled-components';
 import { getUserName } from 'redux/auth/auth-selectors';
 import * as operations from 'redux/auth/auth-operations';
 import Modal from 'components/Modal/Modal';
+import ButtonGroup from 'components/ButtonGroup/ButtonGroup';
 import ButtonText from 'components/ButtonText/ButtonText';
-
-const Text = styled.p`
-  color: #000000;
-`;
 
 const ModalLogOut = ({ closeModalLogOut }) => {
   const dispatch = useDispatch();
@@ -22,12 +19,14 @@ const ModalLogOut = ({ closeModalLogOut }) => {
   return (
     <Modal modalHundler={closeModalLogOut}>
       <Text>{userName ?? 'User'}, are you sure you want to exit?</Text>
-      <ButtonText type="button" buttonHundler={logOut}>
-        Ok
-      </ButtonText>
-      <ButtonText type="button" buttonHundler={closeModalLogOut}>
-        Cancel
-      </ButtonText>
+      <ButtonGroup>
+        <ButtonText type="button" buttonHundler={logOut}>
+          Ok
+        </ButtonText>
+        <ButtonText type="button" buttonHundler={closeModalLogOut}>
+          Cancel
+        </ButtonText>
+      </ButtonGroup>
     </Modal>
   );
 };
@@ -37,3 +36,10 @@ ModalLogOut.propTypes = {
 };
 
 export default ModalLogOut;
+
+const Text = styled.p`
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #ff6600;
+  line-height: 1.3;
+`;

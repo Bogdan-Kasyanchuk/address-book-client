@@ -1,19 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import { getFilter } from 'redux/contacts/contacts-selectors';
 import * as actions from 'redux/contacts/contacts-action';
+import LabelInput from 'components/LabelInput/LabelInput';
 import InputStandart from 'components/InputStandart/InputStandart';
-import ButtonText from 'components/ButtonText/ButtonText';
-
-const Div = styled.div`
-  margin-left: auto;
-  margin-right: auto;
-  width: 450px;
-`;
-
-const Label = styled.label`
-  font-size: 18px;
-`;
+import ButtonIconText from 'components/ButtonIconText/ButtonIconText';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -28,9 +18,9 @@ const Filter = () => {
   };
 
   return (
-    <Div>
-      <Label>
-        Find contacts by name
+    <>
+      <LabelInput marginBottom="0" marginRight="20px">
+        Find by name
         <InputStandart
           autoComplete="off"
           type="text"
@@ -38,11 +28,16 @@ const Filter = () => {
           placeholder="Enter name"
           inputHundler={filterContact}
         />
-      </Label>
-      <ButtonText disabled={!filter} type="button" buttonHundler={filterReset}>
+      </LabelInput>
+      <ButtonIconText
+        disabled={!filter}
+        type="button"
+        buttonHundler={filterReset}
+        iconName="cleaner"
+      >
         Clear
-      </ButtonText>
-    </Div>
+      </ButtonIconText>
+    </>
   );
 };
 

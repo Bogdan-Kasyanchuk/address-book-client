@@ -1,13 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-const Div = styled.div`
-  max-width: 1280px;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-left: auto;
-  margin-right: auto;
-`;
+import { size } from 'styles/variables';
 
 const Container = ({ children }) => {
   return <Div>{children}</Div>;
@@ -18,3 +11,28 @@ Container.propTypes = {
 };
 
 export default Container;
+
+const Div = styled.div`
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+
+  ${size.mobileMax} {
+    max-width: 767px;
+  }
+
+  ${size.tabletMin} {
+    width: 768px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  ${size.laptopMin} {
+    width: 1024px;
+  }
+
+  ${size.desktopMin} {
+    width: 1280px;
+  }
+`;

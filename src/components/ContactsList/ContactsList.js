@@ -1,47 +1,38 @@
-import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { getFilteredContacts } from 'redux/contacts/contacts-selectors';
-import * as operations from 'redux/contacts/contacts-operations';
 import ContactItem from 'components/ContactItem/ContactItem';
-import ButtonText from 'components/ButtonText/ButtonText';
+import { size } from 'styles/variables';
 
-const ContactsList = () => {
-  const dispatch = useDispatch();
+const ContactsList = ({ searchParams }) => {
   const filteredContacts = useSelector(getFilteredContacts);
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const favoriteContacts = () => {
-    if (searchParams.get('favorite')) {
-      setSearchParams({});
-    } else {
-      setSearchParams({ favorite: true });
-    }
-  };
-
-  useEffect(() => {
-    if (searchParams.get('favorite')) {
-      dispatch(operations.getContact(searchParams.get('favorite')));
-    } else {
-      dispatch(operations.getContact());
-    }
-  }, [searchParams, dispatch]);
 
   return (
-    <>
-      <ButtonText type="button" buttonHundler={favoriteContacts}>
-        Favorite
-      </ButtonText>
-      <ul>
-        {filteredContacts.map(
-          (element, index) =>
-            (searchParams.get('favorite') && !element.favorite) || (
-              <ContactItem key={element._id} element={element} index={index} />
-            ),
-        )}
-      </ul>
-    </>
+    <Ul>
+      {filteredContacts.map(
+        (element, index) =>
+          (searchParams && !element.favorite) || (
+            <ContactItem key={element._id} element={element} index={index} />
+          ),
+      )}
+    </Ul>
   );
 };
 
+ContactsList.propTypes = {
+  searchParams: PropTypes.any,
+};
+
 export default ContactsList;
+
+const Ul = styled.ul`
+  margin-left: -20px;
+  margin-top: -20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  ${size.tabletMin} {
+    display: flex;
+  }
+`;

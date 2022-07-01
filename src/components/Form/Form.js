@@ -1,17 +1,11 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Form1 = styled.form`
-  width: 350px;
-  margin-left: auto;
-  margin-right: auto;
-`;
-
 const Form = ({ autoComplete, formHundler, children }) => {
   return (
-    <Form1 autoComplete={autoComplete} onSubmit={formHundler}>
+    <FormTag autoComplete={autoComplete} onSubmit={formHundler}>
       {children}
-    </Form1>
+    </FormTag>
   );
 };
 
@@ -22,3 +16,9 @@ Form.propTypes = {
 };
 
 export default Form;
+
+const FormTag = styled.form`
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+`;
