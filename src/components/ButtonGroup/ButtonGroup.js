@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const ButtonGroup = ({ children }) => {
   return <Div>{children}</Div>;
@@ -13,6 +13,6 @@ export default ButtonGroup;
 
 const Div = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-around;
+  align-items: center;
 `;

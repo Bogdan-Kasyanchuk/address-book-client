@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { accentColor } from 'styles/variables';
 
-const LabelInput = ({ children, marginBottom, marginRight }) => {
+const LabelInput = ({ marginBottom, marginRight, children }) => {
   return (
     <Label marginBottom={marginBottom} marginRight={marginRight}>
       {children}
@@ -10,20 +11,21 @@ const LabelInput = ({ children, marginBottom, marginRight }) => {
 };
 
 LabelInput.propTypes = {
-  children: PropTypes.node,
   marginBottom: PropTypes.string,
   marginRight: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default LabelInput;
 
 const Label = styled.label`
+  position: relative;
   display: block;
-  margin-bottom: ${element => element.marginBottom || '20px'};
   margin-right: ${element => element.marginRight || null};
+  margin-bottom: ${element => element.marginBottom || '20px'};
   font-size: 20px;
-  color: #ffffff;
+
   :focus-within {
-    color: #ff6600;
+    color: ${accentColor};
   }
 `;

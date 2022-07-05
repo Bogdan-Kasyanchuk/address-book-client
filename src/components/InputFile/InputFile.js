@@ -2,10 +2,6 @@ import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Input = styled.input`
-  display: none;
-`;
-
 const InputFile = forwardRef((props, ref) => {
   const { inputHundler } = props;
 
@@ -14,8 +10,12 @@ const InputFile = forwardRef((props, ref) => {
   );
 });
 
-Input.propTypes = {
+InputFile.propTypes = {
   inputHundler: PropTypes.func,
 };
 
 export default InputFile;
+
+const Input = styled.input`
+  display: none;
+`;

@@ -4,23 +4,28 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Icon from 'components/Icon/Icon';
 import ButtonText from 'components/ButtonText/ButtonText';
+import { bgColor, accentColor } from 'styles/variables';
 
 const modalRoot = document.querySelector('#root-modal');
 
-const Modal = ({ children, modalHundler }) => {
+const Modal = ({ modalHundler, children }) => {
   useEffect(() => {
     window.addEventListener('keydown', onClickKeyDown);
-    return () => window.removeEventListener('keydown', onClickKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onClickKeyDown);
+      document.body.style.overflow = 'auto';
+    };
   });
 
-  const onClickKeyDown = event => {
-    if (event.code === 'Escape') {
+  const onClickKeyDown = ({ code }) => {
+    if (code === 'Escape') {
       modalHundler();
     }
   };
 
-  const onClickBackdrop = event => {
-    if (event.currentTarget === event.target) {
+  const onClickBackdrop = ({ currentTarget, target }) => {
+    if (currentTarget === target) {
       modalHundler();
     }
   };
@@ -28,13 +33,13 @@ const Modal = ({ children, modalHundler }) => {
   return createPortal(
     <Overlay onClick={onClickBackdrop}>
       <Content>
-        <DivDiv>
+        <DiwWrapper>
           <Icon iconName="logo" width="34px" height="34px" />
           <ButtonText type="button" buttonHundler={modalHundler}>
             Close
           </ButtonText>
-        </DivDiv>
-        <DivDivDiv>{children}</DivDivDiv>
+        </DiwWrapper>
+        <Div>{children}</Div>
       </Content>
     </Overlay>,
     modalRoot,
@@ -50,8 +55,8 @@ export default Modal;
 
 const Overlay = styled.div`
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
@@ -62,25 +67,25 @@ const Content = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  min-width: 330px;
+  min-width: 290px;
   max-width: 440px;
-  transform: translate(-50%, -50%);
-  background-color: #444444;
-  overflow-y: auto;
   max-height: 80vh;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  background-color: ${bgColor};
+  overflow-y: auto;
+  transform: translate(-50%, -50%);
 `;
 
-const DivDiv = styled.div`
-  padding: 12px;
+const DiwWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #ff6600;
+  padding: 12px;
+  border-bottom: 2px solid ${accentColor};
 
   .icon {
-    stroke: #ff6600;
+    stroke: ${accentColor};
   }
 
   button {
@@ -89,6 +94,6 @@ const DivDiv = styled.div`
   }
 `;
 
-const DivDivDiv = styled.div`
+const Div = styled.div`
   padding: 20px;
 `;

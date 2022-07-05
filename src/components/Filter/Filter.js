@@ -2,15 +2,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getFilter } from 'redux/contacts/contacts-selectors';
 import * as actions from 'redux/contacts/contacts-action';
 import LabelInput from 'components/LabelInput/LabelInput';
-import InputStandart from 'components/InputStandart/InputStandart';
+import InputFilter from 'components/InputFilter/InputFilter';
 import ButtonIconText from 'components/ButtonIconText/ButtonIconText';
 
 const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(getFilter);
 
-  const filterContact = event => {
-    dispatch(actions.filterContact(event.target.value));
+  const filterContact = ({ target }) => {
+    dispatch(actions.filterContact(target.value));
   };
 
   const filterReset = () => {
@@ -21,7 +21,7 @@ const Filter = () => {
     <>
       <LabelInput marginBottom="0" marginRight="20px">
         Find by name
-        <InputStandart
+        <InputFilter
           autoComplete="off"
           type="text"
           value={filter}

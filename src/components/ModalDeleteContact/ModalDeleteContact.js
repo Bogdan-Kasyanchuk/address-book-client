@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import * as operations from 'redux/contacts/contacts-operations';
 import { getFilter } from 'redux/contacts/contacts-selectors';
 import * as actions from 'redux/contacts/contacts-action';
 import Modal from 'components/Modal/Modal';
 import ButtonGroup from 'components/ButtonGroup/ButtonGroup';
 import ButtonText from 'components/ButtonText/ButtonText';
+import { accentColor } from 'styles/variables';
 
 const ModalDeleteContact = ({ id, name, closeModalDelete }) => {
   const dispatch = useDispatch();
@@ -35,7 +36,6 @@ const ModalDeleteContact = ({ id, name, closeModalDelete }) => {
 ModalDeleteContact.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  closeModalDelete: PropTypes.func,
 };
 
 export default ModalDeleteContact;
@@ -43,6 +43,6 @@ export default ModalDeleteContact;
 const Text = styled.p`
   margin-bottom: 20px;
   font-size: 20px;
-  color: #ff6600;
+  color: ${accentColor};
   line-height: 1.3;
 `;

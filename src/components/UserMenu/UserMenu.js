@@ -7,7 +7,7 @@ import ModalLogOut from 'components/ModalLogOut/ModalLogOut';
 import Avatar from 'components/Avatar/Avatar';
 import ButtonIconText from 'components/ButtonIconText/ButtonIconText';
 import notAvatar from 'assets/img/notAvatar.png';
-import { size } from 'styles/variables';
+import { size, firstColor } from 'styles/variables';
 
 const UserMenu = () => {
   const userName = useSelector(getUserName);
@@ -60,11 +60,11 @@ const UserMenu = () => {
   };
 
   return (
-    <DivDiv>
+    <DivWrapper>
       <Div onClick={openModalEdit} style={{ display: 'flex' }}>
-        <DivImage>
+        <ImageWrapper>
           <Avatar src={userAvatar} alt="Avatar" />
-        </DivImage>
+        </ImageWrapper>
         <P>{userName}</P>
       </Div>
       <ButtonIconText
@@ -83,13 +83,13 @@ const UserMenu = () => {
       {isOpenModal.logOut && (
         <ModalLogOut closeModalLogOut={closeModalLogOut} />
       )}
-    </DivDiv>
+    </DivWrapper>
   );
 };
 
 export default UserMenu;
 
-const DivDiv = styled.div`
+const DivWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -108,7 +108,7 @@ const Div = styled.div`
   }
 `;
 
-const DivImage = styled.div`
+const ImageWrapper = styled.div`
   width: 34px;
 
   ${size.laptopMin} {
@@ -117,15 +117,15 @@ const DivImage = styled.div`
 `;
 
 const P = styled.p`
+  margin-left: 10px;
+  flex-basis: 25%;
+  font-size: 14px;
+  color: ${firstColor};
+  line-height: 1.2;
+
   ${size['449Max']} {
     display: none;
   }
-
-  flex-basis: 25%;
-  font-size: 14px;
-  color: #ffffff;
-  line-height: 1.2;
-  margin-left: 10px;
 
   ${size.laptopMin} {
     font-size: 16px;

@@ -57,7 +57,7 @@ export const currentUser = createAsyncThunk(
     tokenService.set(currentToken);
     try {
       const { data } = await axios.get('users/current');
-      toast.success(data.payload.message);
+      // toast.success(data.payload.message);
       return data.payload;
     } catch (error) {
       toast.error(

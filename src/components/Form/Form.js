@@ -10,7 +10,7 @@ const Form = ({ autoComplete, formHundler, children }) => {
 };
 
 Form.propTypes = {
-  autoComplete: PropTypes.string,
+  autoComplete: PropTypes.string.isRequired,
   formHundler: PropTypes.func,
   children: PropTypes.node,
 };
@@ -18,7 +18,7 @@ Form.propTypes = {
 export default Form;
 
 const FormTag = styled.form`
-  max-width: 400px;
   margin-left: auto;
   margin-right: auto;
+  max-width: 400px;
 `;

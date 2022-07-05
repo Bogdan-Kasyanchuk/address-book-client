@@ -16,21 +16,21 @@ const Icon = ({ className, iconName, width, height, fill, stroke }) => {
 };
 
 Icon.defaultProps = {
+  className: '',
+  iconName: '',
   width: '20px',
   height: '20px',
   fill: '#000000',
   stroke: 'inherit',
-  iconName: '',
-  className: '',
 };
 
 Icon.propTypes = {
+  className: PropTypes.string,
+  iconName: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
   fill: PropTypes.string,
   stroke: PropTypes.string,
-  iconName: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export default Icon;

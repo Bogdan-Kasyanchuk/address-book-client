@@ -6,9 +6,9 @@ import { getContacts } from 'redux/contacts/contacts-selectors';
 import Modal from 'components/Modal/Modal';
 import SubTitle from 'components/SubTitle/SubTitle';
 import Form from 'components/Form/Form';
-import InputForm from 'components/InputForm/InputForm';
+import InputStandartForm from 'components/InputStandartForm/InputStandartForm';
 import TextAreaForm from 'components/TextAreaForm/TextAreaForm';
-import InputCheckboxForm from 'components/InputCheckboxForm/InputCheckboxForm';
+import InputFavoriteForm from 'components/InputFavoriteForm/InputFavoriteForm';
 import ButtonGroup from 'components/ButtonGroup/ButtonGroup';
 import ButtonText from 'components/ButtonText/ButtonText';
 import { existContactCreate } from 'service/existContactService';
@@ -52,7 +52,7 @@ const ModalCreateContact = ({ closeModalCreate }) => {
     <Modal modalHundler={closeModal}>
       <SubTitle>Creating contact</SubTitle>
       <Form autoComplete="off" formHundler={handleSubmit(createContact)}>
-        <InputForm
+        <InputStandartForm
           name="Name"
           type="text"
           register={register}
@@ -61,7 +61,7 @@ const ModalCreateContact = ({ closeModalCreate }) => {
           title={TITLE_FORM.NAME}
           errors={errors}
         />
-        <InputForm
+        <InputStandartForm
           name="Phone"
           type="tel"
           register={register}
@@ -70,7 +70,7 @@ const ModalCreateContact = ({ closeModalCreate }) => {
           title={TITLE_FORM.PHONE}
           errors={errors}
         />
-        <InputForm
+        <InputStandartForm
           name="Email"
           type="text"
           register={register}
@@ -79,7 +79,7 @@ const ModalCreateContact = ({ closeModalCreate }) => {
           title={TITLE_FORM.EMAIL}
           errors={errors}
         />
-        <InputForm
+        <InputStandartForm
           name="Address"
           type="text"
           register={register}
@@ -92,7 +92,7 @@ const ModalCreateContact = ({ closeModalCreate }) => {
           placeholder="Enter other"
           title={TITLE_FORM.OTHER}
         />
-        <InputCheckboxForm name="Favorite" register={register} />
+        <InputFavoriteForm name="Favorite" register={register} />
         <ButtonGroup>
           <ButtonText disabled={buttonDisabled} type="submit">
             Ok

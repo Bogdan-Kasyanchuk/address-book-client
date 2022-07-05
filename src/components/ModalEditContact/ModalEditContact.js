@@ -8,7 +8,7 @@ import Modal from 'components/Modal/Modal';
 import SubTitle from 'components/SubTitle/SubTitle';
 import EditAvatar from 'components/EditAvatar/EditAvatar';
 import Form from 'components/Form/Form';
-import InputForm from 'components/InputForm/InputForm';
+import InputStandartForm from 'components/InputStandartForm/InputStandartForm';
 import TextAreaForm from 'components/TextAreaForm/TextAreaForm';
 import ButtonGroup from 'components/ButtonGroup/ButtonGroup';
 import ButtonText from 'components/ButtonText/ButtonText';
@@ -90,7 +90,7 @@ const ModalEditContact = ({ element, userAvatar, closeModalEdit }) => {
         loadAvatar={loadAvatar}
       ></EditAvatar>
       <Form autoComplete="off" formHundler={handleSubmit(editContact)}>
-        <InputForm
+        <InputStandartForm
           name="Name"
           type="text"
           defaultValue={element.name}
@@ -100,7 +100,7 @@ const ModalEditContact = ({ element, userAvatar, closeModalEdit }) => {
           title={TITLE_FORM.NAME}
           errors={errors}
         />
-        <InputForm
+        <InputStandartForm
           name="Phone"
           type="tel"
           defaultValue={element.phone}
@@ -110,7 +110,7 @@ const ModalEditContact = ({ element, userAvatar, closeModalEdit }) => {
           title={TITLE_FORM.PHONE}
           errors={errors}
         />
-        <InputForm
+        <InputStandartForm
           name="Email"
           type="text"
           defaultValue={element.email}
@@ -120,7 +120,7 @@ const ModalEditContact = ({ element, userAvatar, closeModalEdit }) => {
           title={TITLE_FORM.EMAIL}
           errors={errors}
         />
-        <InputForm
+        <InputStandartForm
           name="Address"
           type="text"
           defaultValue={element.address}
@@ -157,7 +157,6 @@ ModalEditContact.propTypes = {
     address: PropTypes.string,
     other: PropTypes.string,
   }),
-  userAvatar: PropTypes.string.isRequired,
   closeModalDelete: PropTypes.func,
 };
 

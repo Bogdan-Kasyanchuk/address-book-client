@@ -1,7 +1,7 @@
 import { useEffect, Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// import { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import * as operations from 'redux/auth/auth-operations';
 import { getIsFetchingCurrentUser } from 'redux/auth/auth-selectors';
 import { getLoading } from 'redux/selectors';
@@ -34,7 +34,7 @@ function App() {
 
   return (
     <>
-      {/* <Toaster position="top-right" /> */}
+      <Toaster position="top-right" />
       {!isFetchingCurrentUser && (
         <>
           <AppBar />

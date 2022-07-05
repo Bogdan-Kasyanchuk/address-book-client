@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { getLoading } from 'redux/selectors';
+import styled from 'styled-components';
 import EditContactFavorite from 'components/EditContactFavorite/EditContactFavorite';
 import ButtonIconText from 'components/ButtonIconText/ButtonIconText';
 import Avatar from 'components/Avatar/Avatar';
@@ -10,10 +8,9 @@ import ContactContent from 'components/ContactContent/ContactContent';
 import ModalEditContact from 'components/ModalEditContact/ModalEditContact';
 import ModalDeleteContact from 'components/ModalDeleteContact/ModalDeleteContact';
 import notAvatar from 'assets/img/notAvatar.png';
-import { size } from 'styles/variables';
+import { size, accentColor } from 'styles/variables';
 
 const ContactItem = ({ element }) => {
-  const loading = useSelector(getLoading);
   const [isOpenModal, setIsOpenModal] = useState({
     edit: false,
     delete: false,
@@ -74,9 +71,8 @@ const ContactItem = ({ element }) => {
   return (
     <>
       <Li onClick={handlerContact}>
-        <ButtonDiv>
+        <ButtonWrapper>
           <ButtonIconText
-            disabled={loading}
             type="button"
             iconName="edit"
             displayMobileMax={false}
@@ -84,21 +80,20 @@ const ContactItem = ({ element }) => {
             Edit
           </ButtonIconText>
           <ButtonIconText
-            disabled={loading}
             type="button"
             iconName="delete"
             displayMobileMax={false}
           >
             Delete
           </ButtonIconText>
-        </ButtonDiv>
+        </ButtonWrapper>
         <EditContactFavorite favorite={element.favorite} id={element._id} />
-        <Div1>
-          <DivImage>
+        <Div>
+          <AvatarWrapper>
             <Avatar src={userAvatar} alt={'Avatar'} />
-          </DivImage>
+          </AvatarWrapper>
           <ContactContent element={element} />
-        </Div1>
+        </Div>
       </Li>
       {isOpenModal.edit && (
         <ModalEditContact
@@ -120,14 +115,7 @@ const ContactItem = ({ element }) => {
 
 ContactItem.propTypes = {
   element: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    address: PropTypes.string,
-    other: PropTypes.string,
     avatarUrl: PropTypes.string.isRequired,
-    favorite: PropTypes.bool.isRequired,
-    _id: PropTypes.string.isRequired,
   }),
 };
 
@@ -135,17 +123,17 @@ export default ContactItem;
 
 const Li = styled.li`
   position: relative;
-  background-color: rgba(40, 40, 40, 0.5);
-  border: 2px solid #ff6600;
-  border-top-left-radius: 8px;
-  border-bottom-right-radius: 8px;
   margin-left: 20px;
   margin-top: 20px;
+  max-width: 320px;
   padding: 10px;
   flex-grow: 1;
   flex-basis: 275px;
-  max-width: 320px;
   font-size: 16px;
+  border: 2px solid ${accentColor};
+  border-top-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: rgba(40, 40, 40, 0.5);
 
   ${size.tabletMin} {
     flex-basis: 600px;
@@ -156,30 +144,28 @@ const Li = styled.li`
   }
 `;
 
-const ButtonDiv = styled.div`
+const ButtonWrapper = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: absolute;
   height: 85px;
-  left: 10px;
-  top: 10px;
 `;
 
-const Div1 = styled.div`
+const Div = styled.div`
   ${size.tabletMin} {
     display: flex;
   }
 `;
 
-const DivImage = styled.div`
+const AvatarWrapper = styled.div`
   min-width: 85px;
   max-width: 85px;
 
   ${size.mobileMax} {
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 20px;
   }
 
   ${size.tabletMin} {

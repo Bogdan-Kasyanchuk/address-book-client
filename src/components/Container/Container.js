@@ -13,10 +13,10 @@ Container.propTypes = {
 export default Container;
 
 const Div = styled.div`
-  padding-left: 15px;
-  padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 
   ${size.mobileMax} {
     max-width: 767px;

@@ -1,5 +1,4 @@
 import { useRef } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Avatar from 'components/Avatar/Avatar';
 import InputFile from 'components/InputFile/InputFile';
@@ -13,45 +12,38 @@ const EditAvatar = ({ imagePreview, userAvatar, deleteAvatar, loadAvatar }) => {
   };
 
   return (
-    <DivDiv>
-      <DivImage>
+    <Div>
+      <ImageWrapper>
         <Avatar src={imagePreview ? imagePreview : userAvatar} alt={'Avatar'} />
-      </DivImage>
-      <DivButton>
+      </ImageWrapper>
+      <ButtonWrapper>
         <ButtonText type="button" buttonHundler={deleteAvatar}>
           Delete
         </ButtonText>
         <ButtonText type="button" buttonHundler={clickInputAvatar}>
           Load
         </ButtonText>
-      </DivButton>
+      </ButtonWrapper>
       <InputFile inputHundler={loadAvatar} ref={refInput} />
-    </DivDiv>
+    </Div>
   );
-};
-
-EditAvatar.propTypes = {
-  imagePreview: PropTypes.any,
-  userAvatar: PropTypes.string.isRequired,
-  deleteAvatar: PropTypes.func,
-  loadAvatar: PropTypes.func,
 };
 
 export default EditAvatar;
 
-const DivDiv = styled.div`
+const Div = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-around;
+  align-items: center;
   margin-bottom: 20px;
   height: 110px;
 `;
 
-const DivImage = styled.div`
+const ImageWrapper = styled.div`
   width: 110px;
 `;
 
-const DivButton = styled.div`
+const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;

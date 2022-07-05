@@ -32,6 +32,7 @@ const Ul = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+
   ${size.tabletMin} {
     display: flex;
   }

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { accentColor } from 'styles/variables';
 
 const SubTitle = ({ children }) => {
   return <H2>{children}</H2>;
@@ -14,7 +15,7 @@ export default SubTitle;
 const H2 = styled.h2`
   margin-bottom: 20px;
   font-size: 20px;
-  color: #ff6600;
+  color: ${accentColor};
   text-align: center;
   text-transform: uppercase;
 `;

@@ -1,7 +1,6 @@
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-
-import { size } from 'styles/variables';
+import styled from 'styled-components';
+import { size, accentColor } from 'styles/variables';
 
 const ContactContent = ({ element }) => {
   return (
@@ -42,19 +41,20 @@ ContactContent.propTypes = {
 export default ContactContent;
 
 const P = styled.p`
+  line-height: 1.2;
+
+  :not(:last-child) {
+    margin-bottom: 10px;
+  }
+
   ${size.tabletMin} {
     display: inline-block;
     :not(:last-child) {
       margin-right: 20px;
     }
   }
-
-  line-height: 1.2;
-  :not(:last-child) {
-    margin-bottom: 10px;
-  }
 `;
 
 const Span = styled.span`
-  color: #ff6600;
+  color: ${accentColor};
 `;

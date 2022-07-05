@@ -1,45 +1,33 @@
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 const InputStandart = ({
-  autoComplete,
   type,
-  value,
+  defaultValue,
+  register,
+  name,
+  validation,
   placeholder,
-  inputHundler,
+  title,
 }) => {
   return (
-    <Input
-      autoComplete={autoComplete}
+    <input
       type={type}
-      value={value}
+      defaultValue={defaultValue}
+      {...register(`${name.toLowerCase()}`, validation)}
       placeholder={placeholder}
-      onChange={inputHundler}
+      title={title}
     />
   );
 };
 
 InputStandart.propTypes = {
-  autoComplete: PropTypes.string,
   type: PropTypes.string.isRequired,
-  value: PropTypes.string,
+  defaultValue: PropTypes.string,
+  register: PropTypes.func,
+  name: PropTypes.string.isRequired,
+  validation: PropTypes.object,
   placeholder: PropTypes.string,
-  onChange: PropTypes.func,
+  title: PropTypes.string,
 };
 
 export default InputStandart;
-
-const Input = styled.input`
-  width: 100%;
-  margin-top: 8px;
-  color: #000000;
-  padding: 4px 8px;
-  font-size: 20px;
-  border: 2px solid #ffffff;
-  border-top-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-  line-height: 1.1;
-  :focus {
-    border-color: #ff6600;
-  }
-`;

@@ -30,11 +30,9 @@ const Contacts = () => {
 export default Contacts;
 
 const Div = styled.div`
-  max-width: ${element => element.maxWidth || '360px'};
   display: flex;
-  align-items: ${element => element.alignItems || 'center'};
   justify-content: space-around;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 30px;
+  align-items: ${element => element.alignItems || 'center'};
+  max-width: ${element => element.maxWidth || '360px'};
+  margin: 0 auto 30px;
 `;

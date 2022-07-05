@@ -2,64 +2,53 @@ import { useDispatch } from 'react-redux';
 import * as operations from 'redux/contacts/contacts-operations';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { visuallyHidden } from 'styles/utils';
+import InputCheckbox from 'components/InputCheckbox/InputCheckbox';
+import { accentColor } from 'styles/variables';
 
 const EditContactFavorite = ({ favorite, id }) => {
   const dispatch = useDispatch();
-  const editFavoriteContact = event => {
+  const editFavoriteContact = ({ target }) => {
     const editedFavoriteContact = {
       id,
-      favorite: event.target.checked,
+      favorite: target.checked,
     };
     dispatch(operations.editFavoriteContact(editedFavoriteContact));
   };
 
   return (
     <Label>
-      <SpanInput>
-        <Input
-          type="checkbox"
-          checked={favorite}
-          onChange={editFavoriteContact}
-        />
-        <Span checkedType={favorite}></Span>
-      </SpanInput>
+      <InputCheckbox
+        favorite={favorite}
+        inputCheckHandler={editFavoriteContact}
+      />
+      <Span checkedType={favorite}></Span>
     </Label>
   );
 };
 
 EditContactFavorite.propTypes = {
-  favorite: PropTypes.bool,
   id: PropTypes.string.isRequired,
+  favorite: PropTypes.bool.isRequired,
 };
 
 export default EditContactFavorite;
 
 const Label = styled.label`
   position: absolute;
-  width: 24px;
-  height: 24px;
-  right: 10px;
   top: 10px;
-`;
-
-const SpanInput = styled.span`
+  right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  border: 2px solid #ff6600;
+  width: 24px;
+  height: 24px;
+  border: 2px solid ${accentColor};
   border-radius: 50%;
-`;
-
-const Input = styled.input`
-  ${visuallyHidden}
 `;
 
 const Span = styled.span`
   width: 16px;
   height: 16px;
-  background-color: ${({ checkedType }) => (checkedType ? '#ff6600' : null)};
   border-radius: 50%;
+  background-color: ${({ checkedType }) => (checkedType ? accentColor : null)};
 `;

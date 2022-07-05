@@ -17,13 +17,13 @@ const Home = () => {
 export default Home;
 
 const Div = styled.div`
+  margin-bottom: 20px;
   text-align: center;
   text-transform: uppercase;
-  margin-bottom: 20px;
 
   ${size.laptopMin} {
-    padding-top: 20px;
     margin-bottom: 40px;
+    padding-top: 20px;
   }
 `;
 

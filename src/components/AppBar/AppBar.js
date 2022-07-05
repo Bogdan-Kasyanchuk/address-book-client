@@ -5,32 +5,31 @@ import Logo from 'components/Logo/Logo';
 import Navigation from 'components/Navigation/Navigation';
 import UserMenu from 'components/UserMenu/UserMenu';
 import AuthNav from 'components/AuthNav/AuthNav';
-import { size } from 'styles/variables';
+import { size, accentColor } from 'styles/variables';
 
 const AppBar = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
 
   return (
-    <DivHeader>
+    <HeaderWrapper>
       <Header>
         <Navigation />
         <Logo children="Addres book" />
         <Div> {isLoggedIn ? <UserMenu /> : <AuthNav />}</Div>
       </Header>
-    </DivHeader>
+    </HeaderWrapper>
   );
 };
 
 export default AppBar;
 
-const DivHeader = styled.div`
-  background-color: #282828;
-  border-bottom: 2px solid #ff6600;
-
+const HeaderWrapper = styled.div`
   position: fixed;
   top: 0;
-  z-index: 2000;
   width: 100%;
+  border-bottom: 2px solid ${accentColor};
+  background-color: #282828;
+  z-index: 2000;
 `;
 
 const Header = styled.header`

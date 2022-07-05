@@ -1,24 +1,24 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { visuallyHidden } from 'styles/utils';
+import InputCheckbox from 'components/InputCheckbox/InputCheckbox';
+import { accentColor, bgColor } from 'styles/variables';
 
-const InputCheckboxForm = ({ name, register, title }) => {
+const InputFavoriteForm = ({ name, register }) => {
   const [check, setCheck] = useState(false);
 
-  const checkHandler = event => {
-    setCheck(event.target.checked);
+  const checkHandler = ({ target }) => {
+    setCheck(target.checked);
   };
 
   return (
     <Label>
       {name}
       <SpanInput>
-        <Input
-          type="checkbox"
-          {...register(`${name.toLowerCase()}`)}
-          title={title}
-          onChange={checkHandler}
+        <InputCheckbox
+          name={name}
+          register={register}
+          inputCheckHandler={checkHandler}
         />
         <Span checkedType={check}></Span>
       </SpanInput>
@@ -26,13 +26,11 @@ const InputCheckboxForm = ({ name, register, title }) => {
   );
 };
 
-InputCheckboxForm.propTypes = {
+InputFavoriteForm.propTypes = {
   name: PropTypes.string.isRequired,
-  register: PropTypes.func,
-  title: PropTypes.string,
 };
 
-export default InputCheckboxForm;
+export default InputFavoriteForm;
 
 const Label = styled.label`
   display: flex;
@@ -40,7 +38,6 @@ const Label = styled.label`
   align-items: center;
   margin-bottom: 20px;
   font-size: 20px;
-  color: #ffffff;
 `;
 
 const SpanInput = styled.span`
@@ -49,18 +46,14 @@ const SpanInput = styled.span`
   align-items: center;
   width: 24px;
   height: 24px;
-  border: 2px solid #ff6600;
+  border: 2px solid ${accentColor};
   border-radius: 50%;
-`;
-
-const Input = styled.input`
-  ${visuallyHidden}
 `;
 
 const Span = styled.span`
   width: 16px;
   height: 16px;
-  background-color: ${({ checkedType }) =>
-    checkedType ? '#ff6600' : '#444444'};
   border-radius: 50%;
+  background-color: ${({ checkedType }) =>
+    checkedType ? accentColor : bgColor};
 `;

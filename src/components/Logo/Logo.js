@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Icon from 'components/Icon/Icon';
-import { size } from 'styles/variables';
+import { size, accentColor } from 'styles/variables';
 
 const Logo = ({ children }) => {
   return (
@@ -23,7 +23,7 @@ const Div = styled.div`
   justify-content: center;
   align-items: center;
   flex-basis: calc(100% / 3);
-  color: #ff6600;
+  color: ${accentColor};
 
   .icon {
     stroke: currentColor;
@@ -31,14 +31,13 @@ const Div = styled.div`
 `;
 
 const H1 = styled.h1`
+  margin-left: 10px;
+  line-height: 1.06;
+  text-transform: uppercase;
+
   ${size.mobileMax} {
     display: none;
   }
-
-  margin-left: 10px;
-  font-size: 16px;
-  line-height: 1.06;
-  text-transform: uppercase;
 
   ${size.laptopMax} {
     width: 60px;

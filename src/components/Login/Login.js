@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import * as operations from 'redux/auth/auth-operations';
 import ButtonText from 'components/ButtonText/ButtonText';
 import Form from 'components/Form/Form';
-import InputForm from 'components/InputForm/InputForm';
+import InputStandartForm from 'components/InputStandartForm/InputStandartForm';
 import validation from 'service/validationService';
 import { TITLE_FORM } from 'helpers/constants';
 
@@ -28,7 +28,7 @@ const Login = () => {
 
   return (
     <Form autoComplete="off" formHundler={handleSubmit(logInUser)}>
-      <InputForm
+      <InputStandartForm
         name="Email"
         type="email"
         register={register}
@@ -37,7 +37,7 @@ const Login = () => {
         title={TITLE_FORM.EMAIL}
         errors={errors}
       />
-      <InputForm
+      <InputStandartForm
         name="Password"
         type="password"
         register={register}

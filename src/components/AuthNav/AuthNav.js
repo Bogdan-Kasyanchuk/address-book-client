@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Link from 'components/Link/Link';
-// import { size } from 'styles/variables';
 
 const AuthNav = () => {
   return (

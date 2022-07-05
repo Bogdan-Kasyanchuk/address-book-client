@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useForm } from 'react-hook-form';
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 import { getUserName } from 'redux/auth/auth-selectors';
 import * as operations from 'redux/auth/auth-operations';
 import Modal from 'components/Modal/Modal';
@@ -10,7 +10,7 @@ import EditAvatar from 'components/EditAvatar/EditAvatar';
 import Form from 'components/Form/Form';
 import ButtonGroup from 'components/ButtonGroup/ButtonGroup';
 import ButtonText from 'components/ButtonText/ButtonText';
-import InputForm from 'components/InputForm/InputForm';
+import InputStandartForm from 'components/InputStandartForm/InputStandartForm';
 import loadAvatarService from 'service/loadAvatarService';
 import validation from 'service/validationService';
 import { TITLE_FORM } from 'helpers/constants';
@@ -66,7 +66,7 @@ const ModalEditUser = ({ userAvatar, closeModalEdit }) => {
         loadAvatar={loadAvatar}
       ></EditAvatar>
       <Form autoComplete="off" formHundler={handleSubmit(editUser)}>
-        <InputForm
+        <InputStandartForm
           name="Name"
           type="text"
           defaultValue={userName}
@@ -90,7 +90,6 @@ const ModalEditUser = ({ userAvatar, closeModalEdit }) => {
 };
 
 ModalEditUser.propTypes = {
-  userAvatar: PropTypes.string.isRequired,
   closeModalEdit: PropTypes.func,
 };
 

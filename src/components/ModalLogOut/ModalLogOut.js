@@ -6,6 +6,7 @@ import * as operations from 'redux/auth/auth-operations';
 import Modal from 'components/Modal/Modal';
 import ButtonGroup from 'components/ButtonGroup/ButtonGroup';
 import ButtonText from 'components/ButtonText/ButtonText';
+import { accentColor } from 'styles/variables';
 
 const ModalLogOut = ({ closeModalLogOut }) => {
   const dispatch = useDispatch();
@@ -40,6 +41,6 @@ export default ModalLogOut;
 const Text = styled.p`
   margin-bottom: 20px;
   font-size: 20px;
-  color: #ff6600;
+  color: ${accentColor};
   line-height: 1.3;
 `;

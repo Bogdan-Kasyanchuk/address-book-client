@@ -7,9 +7,9 @@ export const getContact = createAsyncThunk(
   async (favorite, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/contacts?favorite=${favorite ?? ''}`);
-      if (data.payload.contacts.length) {
-        toast.success(data.payload.message);
-      }
+      // if (data.payload.contacts.length) {
+      //   toast.success(data.payload.message);
+      // }
       return data.payload.contacts;
     } catch (error) {
       toast.error(rejectWithValue(error).payload.response.data.payload.message);
